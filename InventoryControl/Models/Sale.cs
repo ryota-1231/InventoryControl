@@ -9,7 +9,9 @@ namespace InventoryControl.Models
 
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
+        public int ClientId { get; set; }
         public Client Client { get; set; }
+        public int InventoryId { get; set; }
         public Inventory Inventory { get; set; }
 
     }

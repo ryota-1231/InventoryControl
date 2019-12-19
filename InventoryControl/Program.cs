@@ -22,6 +22,7 @@ namespace InventoryControl
                 {
                     SeedData.Initialize(services);
                 }
+                //エラーが発生している段階でここにきて処理を終わらせる
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
