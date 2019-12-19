@@ -6,19 +6,30 @@
     <h1 class="display-4">在庫管理システム</h1>
     <div id="top-wrapper">
         <div id="main-contents">
-            <div id="button-group">
-                <div class="button btn">
-                  <a href="#" class="inventory-link">入庫</a>
+            <div class="btn-groups">
+                <div class="button btn-block">
+                  <a class="btn btn-block btn-primary d-block d-md-inline-block mb-2 mb-md-0 active rounded-pill" href="Inventory/index" role="button" aria-pressed="true">入庫</a>
                 </div>
-                <div class="button btn">
-                  <a href="#" class="inventory-link">出庫</a>
+                <div class="button btn-block">
+                  <a class="btn btn-block btn-primary d-block d-md-inline-block mb-2 mb-md-0 active rounded-pill" href="Sale/index" role="button" aria-pressed="true">出庫</a>
                 </div>
-                <div class="button btn">
-                  <a href="#" class="inventory-link">棚卸</a>
+                <div class="button btn-block">
+                  <a class="btn btn-block btn-primary d-block d-md-inline-block mb-2 mb-md-0 active rounded-pill" href="#" role="button" aria-pressed="true">棚卸</a>
                 </div>
-                <div class="button btn">
-                  <a href="#" class="inventory-link">各種登録</a>
-                </div>
+                <div class="dropdown btn-block">
+                  <!-- 切替ボタンの設定 -->
+                  <a class="btn btn-block btn-secondary dropdown-toggle rounded-pill" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    各種登録
+                  </a>
+                  <!-- ドロップメニューの設定 -->
+                  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="Item/index">商品登録</a>
+                    <a class="dropdown-item" href="Store/index">店舗登録</a>
+                    <a class="dropdown-item" href="Warehouse/index">倉庫登録</a>
+                    <a class="dropdown-item" href="Client/index">クライアント登録</a>
+                    <a class="dropdown-item" href="Supplier/index">サプライヤー登録</a>
+                  </div><!-- /.dropdown-menu -->
+                </div><!-- /.dropdown -->
             </div>
         </div>
     </div>
