@@ -14,6 +14,8 @@ namespace InventoryControl.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    ClientNum = table.Column<int>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -44,6 +46,8 @@ namespace InventoryControl.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    SupplierNum = table.Column<int>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -61,7 +65,7 @@ namespace InventoryControl.Migrations
                     Address = table.Column<string>(nullable: true),
                     WarehouseNum = table.Column<int>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    StoreId = table.Column<int>(nullable: true)
+                    StoreId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,7 +75,7 @@ namespace InventoryControl.Migrations
                         column: x => x.StoreId,
                         principalTable: "Store",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,24 +89,17 @@ namespace InventoryControl.Migrations
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     Genre = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
-                    ClientId = table.Column<int>(nullable: true),
-                    SupplierId = table.Column<int>(nullable: true)
+                    SupplierId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Item", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Item_Client_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Client",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Item_Supplier_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "Supplier",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,9 +110,9 @@ namespace InventoryControl.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Quantity = table.Column<int>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    ItemId = table.Column<int>(nullable: true),
-                    StoreId = table.Column<int>(nullable: true),
-                    WarehouseId = table.Column<int>(nullable: true)
+                    ItemId = table.Column<int>(nullable: false),
+                    StoreId = table.Column<int>(nullable: false),
+                    WarehouseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,19 +122,19 @@ namespace InventoryControl.Migrations
                         column: x => x.ItemId,
                         principalTable: "Item",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Inventory_Store_StoreId",
                         column: x => x.StoreId,
                         principalTable: "Store",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Inventory_Warehouse_WarehouseId",
                         column: x => x.WarehouseId,
                         principalTable: "Warehouse",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,8 +145,8 @@ namespace InventoryControl.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Quantity = table.Column<int>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    ClientId = table.Column<int>(nullable: true),
-                    InventoryId = table.Column<int>(nullable: true)
+                    ClientId = table.Column<int>(nullable: false),
+                    InventoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,13 +156,13 @@ namespace InventoryControl.Migrations
                         column: x => x.ClientId,
                         principalTable: "Client",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sale_Inventory_InventoryId",
                         column: x => x.InventoryId,
                         principalTable: "Inventory",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -182,11 +179,6 @@ namespace InventoryControl.Migrations
                 name: "IX_Inventory_WarehouseId",
                 table: "Inventory",
                 column: "WarehouseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Item_ClientId",
-                table: "Item",
-                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Item_SupplierId",
@@ -215,6 +207,9 @@ namespace InventoryControl.Migrations
                 name: "Sale");
 
             migrationBuilder.DropTable(
+                name: "Client");
+
+            migrationBuilder.DropTable(
                 name: "Inventory");
 
             migrationBuilder.DropTable(
@@ -222,9 +217,6 @@ namespace InventoryControl.Migrations
 
             migrationBuilder.DropTable(
                 name: "Warehouse");
-
-            migrationBuilder.DropTable(
-                name: "Client");
 
             migrationBuilder.DropTable(
                 name: "Supplier");

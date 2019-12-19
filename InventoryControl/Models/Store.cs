@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace InventoryControl.Models
 {
@@ -8,8 +9,15 @@ namespace InventoryControl.Models
         public string Name { get; set; }
         public int StoreNum { get; set; }
         public string Address { get; set; }
+        public List<Inventory> Inventories { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
+
+        public static implicit operator Store(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
