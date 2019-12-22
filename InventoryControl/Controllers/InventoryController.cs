@@ -149,5 +149,11 @@ namespace InventoryControl.Controllers
         {
             return _context.Inventory.Any(e => e.Id == id);
         }
+
+        public ActionResult Show()
+        {
+            ViewBag.Message = "Hello World";
+            return View(_context.Inventory);
+        }
     }
 }

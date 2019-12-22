@@ -26,15 +26,15 @@ namespace InventoryControl.Controllers
         }
 
         // GET: Item/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var item = await _context.Item
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var item = _context.Item.Find(id);
+                //.FirstOrDefaultAsync(m => m.Id == id);
             if (item == null)
             {
                 return NotFound();
