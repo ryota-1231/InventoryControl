@@ -7,11 +7,22 @@
 <h1>Create</h1>
 
 <h4>Inventory</h4>
+<form>
+    <p>
+        @Html.DisplayNameFor(model => model.Item.Name) : <input type="text" name="name" />
+        <input type="submit" value="検索" />
+    </p>
+</form>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Item.Lot" class="control-label"></label>
+                <input asp-for="Item.Lot" class="form-control" />
+                <span asp-validation-for="Item.Lot" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
                 <input asp-for="Quantity" class="form-control" />

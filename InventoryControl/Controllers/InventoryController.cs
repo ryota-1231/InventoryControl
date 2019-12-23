@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InventoryControl.Data;
 using InventoryControl.Models;
+using PagedList;
 
 namespace InventoryControl.Controllers
 {
@@ -43,9 +44,12 @@ namespace InventoryControl.Controllers
             return View(inventory);
         }
 
+
+       
+
         // GET: Inventory/Create
-        public IActionResult Create()
-        {
+        public IActionResult Create() {
+
             return View();
         }
 
