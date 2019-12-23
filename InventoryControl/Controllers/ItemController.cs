@@ -43,6 +43,36 @@ namespace InventoryControl.Controllers
             return View(item);
         }
 
+        public ViewResult Search(string sortOrder, string searchString)
+        {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var items = from s in _context.Items
+                        select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(s => s.Name.Contains(searchString)
+                                       || s.Genre.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "Name":
+                    items = items.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    items = items.OrderBy(s => s.ReleaseDate);
+                    break;
+                case "date_desc":
+                    items = items.OrderByDescending(s => s.ReleaseDate);
+                    break;
+                default:
+                    items = items.OrderBy(s => s.Name);
+                    break;
+            }
+            return View(items.ToList());
+        }
+
         // GET: Item/Create
         public IActionResult Create()
         {

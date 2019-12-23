@@ -14,7 +14,7 @@ namespace InventoryControl.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<InventoryControlContext>>()))
             {
-                
+                return;
                 //if (context.Clients.Any())
                 //{
                 //    return;   // DB has been seeded
