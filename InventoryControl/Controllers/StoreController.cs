@@ -22,7 +22,7 @@ namespace InventoryControl.Controllers
         // GET: Store
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Store.ToListAsync());
+            return View(await _context.Stores.ToListAsync());
         }
 
         // GET: Store/Details/5
@@ -33,7 +33,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var store = await _context.Store
+            var store = await _context.Stores
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (store == null)
             {
@@ -73,7 +73,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var store = await _context.Store.FindAsync(id);
+            var store = await _context.Stores.FindAsync(id);
             if (store == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var store = await _context.Store
+            var store = await _context.Stores
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (store == null)
             {
@@ -139,15 +139,15 @@ namespace InventoryControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var store = await _context.Store.FindAsync(id);
-            _context.Store.Remove(store);
+            var store = await _context.Stores.FindAsync(id);
+            _context.Stores.Remove(store);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool StoreExists(int id)
         {
-            return _context.Store.Any(e => e.Id == id);
+            return _context.Stores.Any(e => e.Id == id);
         }
     }
 }

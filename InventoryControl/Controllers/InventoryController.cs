@@ -22,7 +22,7 @@ namespace InventoryControl.Controllers
         // GET: Inventory
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Inventory.ToListAsync());
+            return View(await _context.Inventories.ToListAsync());
         }
 
         // GET: Inventory/Details/5
@@ -33,7 +33,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventory
+            var inventory = await _context.Inventories
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inventory == null)
             {
@@ -73,7 +73,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventory.FindAsync(id);
+            var inventory = await _context.Inventories.FindAsync(id);
             if (inventory == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventory
+            var inventory = await _context.Inventories
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inventory == null)
             {
@@ -139,21 +139,21 @@ namespace InventoryControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var inventory = await _context.Inventory.FindAsync(id);
-            _context.Inventory.Remove(inventory);
+            var inventory = await _context.Inventories.FindAsync(id);
+            _context.Inventories.Remove(inventory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool InventoryExists(int id)
         {
-            return _context.Inventory.Any(e => e.Id == id);
+            return _context.Inventories.Any(e => e.Id == id);
         }
 
         public ActionResult Show()
         {
             ViewBag.Message = "Hello World";
-            return View(_context.Inventory);
+            return View(_context.Inventories);
         }
     }
 }

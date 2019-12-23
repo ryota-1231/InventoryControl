@@ -22,7 +22,7 @@ namespace InventoryControl.Controllers
         // GET: Sale
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sale.ToListAsync());
+            return View(await _context.Sales.ToListAsync());
         }
 
         // GET: Sale/Details/5
@@ -33,7 +33,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var sale = await _context.Sales
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sale == null)
             {
@@ -73,7 +73,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale.FindAsync(id);
+            var sale = await _context.Sales.FindAsync(id);
             if (sale == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var sale = await _context.Sales
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (sale == null)
             {
@@ -139,15 +139,15 @@ namespace InventoryControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var sale = await _context.Sale.FindAsync(id);
-            _context.Sale.Remove(sale);
+            var sale = await _context.Sales.FindAsync(id);
+            _context.Sales.Remove(sale);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SaleExists(int id)
         {
-            return _context.Sale.Any(e => e.Id == id);
+            return _context.Sales.Any(e => e.Id == id);
         }
     }
 }

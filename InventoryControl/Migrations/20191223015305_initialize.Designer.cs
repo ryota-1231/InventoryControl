@@ -3,14 +3,16 @@ using System;
 using InventoryControl.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventoryControl.Migrations
 {
     [DbContext(typeof(InventoryControlContext))]
-    partial class InventoryControlContextModelSnapshot : ModelSnapshot
+    [Migration("20191223015305_initialize")]
+    partial class initialize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

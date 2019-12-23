@@ -8,14 +8,14 @@ namespace InventoryControl.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int Lot { get; set; }
-        public List<Inventory> Invetories { get; set; }
+        public virtual ICollection<Inventory> Invetories { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
-        public decimal Price { get; set; }
+        public decimal PurchasePrice { get; set; }
         public int SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }
 

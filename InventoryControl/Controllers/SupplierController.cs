@@ -22,7 +22,7 @@ namespace InventoryControl.Controllers
         // GET: Supplier
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Supplier.ToListAsync());
+            return View(await _context.Suppliers.ToListAsync());
         }
 
         // GET: Supplier/Details/5
@@ -32,8 +32,8 @@ namespace InventoryControl.Controllers
             {
                 return NotFound();
             }
-
-            var supplier = await _context.Supplier
+            
+            var supplier = await _context.Suppliers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (supplier == null)
             {
@@ -73,7 +73,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var supplier = await _context.Supplier.FindAsync(id);
+            var supplier = await _context.Suppliers.FindAsync(id);
             if (supplier == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var supplier = await _context.Supplier
+            var supplier = await _context.Suppliers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (supplier == null)
             {
@@ -139,15 +139,15 @@ namespace InventoryControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var supplier = await _context.Supplier.FindAsync(id);
-            _context.Supplier.Remove(supplier);
+            var supplier = await _context.Suppliers.FindAsync(id);
+            _context.Suppliers.Remove(supplier);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SupplierExists(int id)
         {
-            return _context.Supplier.Any(e => e.Id == id);
+            return _context.Suppliers.Any(e => e.Id == id);
         }
     }
 }
