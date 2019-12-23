@@ -10,10 +10,10 @@ namespace InventoryControl.Models
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
         public int ItemId { get; set; }
-        public Item Item { get; set; }
+        public virtual Item Item{ get; set; }
         public int StoreId { get; set; }
-        public Store Store { get; set; }
+        public virtual Store Store { get; set; }
         public int WarehouseId { get; set; }
-        public Warehouse Warehouse { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

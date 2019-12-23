@@ -9,8 +9,8 @@ namespace InventoryControl.Models
         public string Name { get; set; }
         public int StoreNum { get; set; }
         public string Address { get; set; }
-        public List<Inventory> Inventories { get; set; }
-        public List<Warehouse> Warehouses { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
+        public virtual ICollection<Warehouse> Warehouses { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }

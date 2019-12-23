@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryControl.Migrations
 {
     [DbContext(typeof(InventoryControlContext))]
-    [Migration("20191219043635_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191223014814_Third")]
+    partial class Third
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0");
+                .HasAnnotation("ProductVersion", "3.1.0");
 
             modelBuilder.Entity("InventoryControl.Models.Client", b =>
                 {
@@ -38,7 +38,7 @@ namespace InventoryControl.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Client");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Inventory", b =>
@@ -70,7 +70,7 @@ namespace InventoryControl.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("Inventory");
+                    b.ToTable("Inventories");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Item", b =>
@@ -88,7 +88,7 @@ namespace InventoryControl.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("PurchasePrice")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ReleaseDate")
@@ -101,7 +101,7 @@ namespace InventoryControl.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Sale", b =>
@@ -116,6 +116,9 @@ namespace InventoryControl.Migrations
                     b.Property<int>("InventoryId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
@@ -128,7 +131,7 @@ namespace InventoryControl.Migrations
 
                     b.HasIndex("InventoryId");
 
-                    b.ToTable("Sale");
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Store", b =>
@@ -151,7 +154,7 @@ namespace InventoryControl.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Store");
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Supplier", b =>
@@ -174,7 +177,7 @@ namespace InventoryControl.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Supplier");
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Warehouse", b =>
@@ -202,7 +205,7 @@ namespace InventoryControl.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Warehouse");
+                    b.ToTable("Warehouses");
                 });
 
             modelBuilder.Entity("InventoryControl.Models.Inventory", b =>

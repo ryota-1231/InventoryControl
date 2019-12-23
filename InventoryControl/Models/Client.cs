@@ -12,7 +12,7 @@ namespace InventoryControl.Models
 
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
-        public List<Sale> Sales { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
 
 
         public static implicit operator Client(int v)

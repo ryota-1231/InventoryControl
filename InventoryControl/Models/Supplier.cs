@@ -9,7 +9,7 @@ namespace InventoryControl.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public int SupplierNum { get; set; }
-        public List<Item> Items { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }

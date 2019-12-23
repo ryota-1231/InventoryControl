@@ -10,12 +10,12 @@ namespace InventoryControl.Data
         {
         }
 
-        public DbSet<Client> Client { get; set; }
-        public DbSet<Inventory> Inventory { get; set; }
-        public DbSet<Item> Item { get; set; }
-        public DbSet<Sale> Sale { get; set; }
-        public DbSet<Store> Store { get; set; }
-        public DbSet<Supplier> Supplier { get; set; }
-        public DbSet<Warehouse> Warehouse { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
     }
 }

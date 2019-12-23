@@ -22,7 +22,7 @@ namespace InventoryControl.Controllers
         // GET: Warehouse
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Warehouse.ToListAsync());
+            return View(await _context.Warehouses.ToListAsync());
         }
 
         // GET: Warehouse/Details/5
@@ -33,7 +33,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var warehouse = await _context.Warehouse
+            var warehouse = await _context.Warehouses
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (warehouse == null)
             {
@@ -73,7 +73,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var warehouse = await _context.Warehouse.FindAsync(id);
+            var warehouse = await _context.Warehouses.FindAsync(id);
             if (warehouse == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace InventoryControl.Controllers
                 return NotFound();
             }
 
-            var warehouse = await _context.Warehouse
+            var warehouse = await _context.Warehouses
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (warehouse == null)
             {
@@ -139,15 +139,15 @@ namespace InventoryControl.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var warehouse = await _context.Warehouse.FindAsync(id);
-            _context.Warehouse.Remove(warehouse);
+            var warehouse = await _context.Warehouses.FindAsync(id);
+            _context.Warehouses.Remove(warehouse);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool WarehouseExists(int id)
         {
-            return _context.Warehouse.Any(e => e.Id == id);
+            return _context.Warehouses.Any(e => e.Id == id);
         }
     }
 }
