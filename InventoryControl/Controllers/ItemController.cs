@@ -22,7 +22,10 @@ namespace InventoryControl.Controllers
         // GET: Item
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Items.ToListAsync());
+            var items = _context.Items
+                .Include(c => c.Supplier)
+                .AsNoTracking();
+            return View(await items.ToListAsync());
         }
 
         // GET: Item/Details/5
@@ -45,6 +48,8 @@ namespace InventoryControl.Controllers
 
         public ViewResult Search(string sortOrder, string searchString)
         {
+
+            
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var items = from s in _context.Items
